@@ -1,0 +1,25 @@
+{
+	"name": "faimmedia/mailchimp-v3-api",
+	"description": "Easy to use MailChimp v3 API library for PHP",
+	"homepage": "https://github.com/faimmedia/mailchimp-v3-api/",
+
+	"license": "MIT",
+
+	"authors": [{
+		"name": "Tim Peters",
+		"email": "info@faimmedia.nl",
+		"homepage": "https://faimmedia.nl",
+		"role": "Developer"
+	}],
+
+	"require": {
+		"php": ">=5.6",
+		"ext-curl": "*"
+	},
+
+	"autoload": {
+		"psr-4": {
+			"FaimMedia\\": "src/"
+		}
+	}
+}

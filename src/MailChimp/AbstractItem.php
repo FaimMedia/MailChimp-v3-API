@@ -10,12 +10,27 @@ class AbstractItem {
 	protected $request;
 	protected $data = [];
 
+	private $_stats;
+	private $_links;
+
 	protected $isSaved = false;
 
 	public function __construct(Request $request, $data = []) {
 		$this->request = $request;
 
 		$this->data = $data;
+		if(array_key_exists('stats', $data)) {
+			$this->stats = $data['stats'];
+
+			unset($data['stats']);
+		}
+
+		if(array_key_exists('_links', $data)) {
+			$this->_links = $data['_links'];
+
+			unset($data['_links']);
+		}
+
 	}
 
 	public function __call($name, $arguments) {
@@ -50,7 +65,7 @@ class AbstractItem {
 	}
 
 	public function getStats() {
-		return $this->stats;
+		return $this->_stats;
 	}
 
 	public function getLinks() {

@@ -18,7 +18,6 @@ class AbstractItem {
 	public function __construct(Request $request, $data = []) {
 		$this->request = $request;
 
-		$this->data = $data;
 		if(array_key_exists('stats', $data)) {
 			$this->stats = $data['stats'];
 
@@ -31,6 +30,7 @@ class AbstractItem {
 			unset($data['_links']);
 		}
 
+		$this->set($data);
 	}
 
 	public function __call($name, $arguments) {

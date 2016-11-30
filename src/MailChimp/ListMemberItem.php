@@ -30,6 +30,10 @@ class ListMemberItem extends AbstractItem {
 		$this->save();
 	}
 
+	public function isSubscribed() {
+		return ($this->getStatus() == 'subscribed');
+	}
+
 	public function delete() {
 
 		$this->request->request('lists/'.$this->getListId().'/members/'.$this->getSubscriberHash(), 'DELETE');

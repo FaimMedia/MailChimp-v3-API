@@ -43,7 +43,19 @@ class AbstractItem {
 			}
 
 			if(array_key_exists($key, $this->data)) {
-				return $this->data[$key];
+				$value = $this->data[$key];
+
+				if(is_array($value)) {
+					$array = new static($this->request, $value);
+
+					if(!empty($arguments[0])) {
+						return $array[$arguments[0]];
+					}
+
+					return $array;
+				}
+
+				return $value;
 			}
 
 			return null;

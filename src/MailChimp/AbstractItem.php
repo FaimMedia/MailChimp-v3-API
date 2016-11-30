@@ -36,7 +36,11 @@ class AbstractItem {
 	public function __call($name, $arguments) {
 
 		if(substr($name, 0, 3) == 'get') {
-			$key = MailChimp::uncamelize(substr($name, 3));
+			$key = substr($name, 3);
+
+			if($key !== strtoupper($key)) {
+				$key = MailChimp::uncamelize($key);
+			}
 
 			if(array_key_exists($key, $this->data)) {
 				return $this->data[$key];

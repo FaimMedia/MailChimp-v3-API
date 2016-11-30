@@ -38,9 +38,7 @@ class ListItem extends AbstractItem {
 		if($response) {
 			$this->isSaved = true;
 
-			$this->data = $response;
-
-			return $this;
+			return $this->set($response, null, false);
 		}
 
 		return false;

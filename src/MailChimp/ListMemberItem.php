@@ -72,7 +72,7 @@ class ListMemberItem extends AbstractItem {
 		if($response) {
 			$this->isSaved = true;
 
-			return new self($this->request, $response);
+			return $this->set($response, null, false);
 		}
 
 		return false;

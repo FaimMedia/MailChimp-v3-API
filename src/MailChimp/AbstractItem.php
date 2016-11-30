@@ -49,7 +49,7 @@ class AbstractItem {
 					$array = new static($this->request, $value);
 
 					if(!empty($arguments[0])) {
-						return $array[$arguments[0]];
+						return $array->{$arguments[0]};
 					}
 
 					return $array;

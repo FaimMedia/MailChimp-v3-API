@@ -14,22 +14,6 @@ class ListMemberItem extends AbstractItem {
 		return $this->getMergeFields('LNAME');
 	}
 
-	public function getMergeFields($field = null) {
-		if(!empty($this->data['merge_fields'])) {
-			if($field !== null) {
-				if(!empty($this->data['merge_fields'][$field])) {
-					return $this->data['merge_fields'][$field];
-				}
-
-				return null;
-			}
-
-			return $this->data['merge_fields'];
-		}
-
-		return null;
-	}
-
 	public function getSubscriberHash() {
 		if($this->getId()) {
 			return $this->getId();

@@ -46,6 +46,46 @@ class AbstractItem {
 		}
 	}
 
+	public function __get($name) {
+		return call_user_func([$this, 'get'.ucfirst($name)]);
+	}
+
+	public function __set($name, $value) {
+		$this->data[$name] = $value;
+	}
+
+	public function get($name) {
+		if(array_key_exists($name, $this->data)) {
+			$value = $this->data[$name];
+
+			if(is_array($value)) {
+				return new static($this->request, $value);
+			}
+
+			return $value;
+		}
+
+		return null;
+	}
+
+	public function set($name, $value = null, $merge = true) {
+		if(is_array($name)) {
+			if($merge) {
+				$this->data = array_merge($this->data, $name);
+			} else {
+				$this->data += $name;
+			}
+		} else {
+			if($merge && array_key_exists($name, $this->data) && is_array($name, $this->data)) {
+				$this->data[$name] = array_merge($this->data[$name], $name);
+			} else {
+				$this->data[$name] = $value;
+			}
+		}
+
+		return $this;
+	}
+
 	protected function isSaved() {
 		return $this->isSaved;
 	}
